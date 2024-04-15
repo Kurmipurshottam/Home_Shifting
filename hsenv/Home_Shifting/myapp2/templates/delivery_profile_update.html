@@ -1,0 +1,24 @@
+{% extends "delivery_header.html" %}
+{% load static %} 
+{% block  content%}
+
+
+<section class="form-container" style="height: 75rem;">
+
+   <form action="{% url 'delivery_profile_update' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>update profile</h3><br>
+      <p>Enter Your Name</p>
+      <input type="text" name="name" placeholder=" Enter Your Name" maxlength="50" class="box" value={{request.session.name}}>
+      <p>Enter Contact Number</p>
+      <input type="text" name="contact" placeholder="Enter your Contact Number" class="box" value={{request.session.contact}}>
+      <p>Select Your Picture</p>
+      <input type="file" name="profile_picture" class="box">
+      <input type="submit" value="update profile" name="submit" class="btn">
+      <a href="{% url 'change_password' %}" style="text-align: center;"><p>Change Password ? </p></a>
+   </form>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'delivery_header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<section class="form-container">
+
+    <form>
+        <h3>Ride details</h3>
+        <p>Move From : {{booking.bname}}</p>
+        <p>Move From : {{booking.htype}}</p>
+        <p>Move From : {{booking.movefrom}}</p>
+        <p>Move To : {{booking.moveto}}</p>
+        <p>Move From : {{booking.state}}</p>
+        <p>Move From : {{booking.razorpay_order_id}}</p>
+        
+        <a href="{% url 'finishride' %}" class="btn">finish ride</a>
+  
+     </form>
+
+   
+      
+    
+      
+
+</section>
+
+
+{% endblock %}
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+   
+</body>
+</html>

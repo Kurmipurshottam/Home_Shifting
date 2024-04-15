@@ -1,0 +1,73 @@
+{% extends "delivery_header.html" %}
+{% load static %} 
+{% block  content %}
+
+<section class="user-profile"  >
+
+   <h1 class="heading">your profile</h1>
+
+   <div class="info" style="box-shadow: 1px 1px 2px 1px #aaaaaa;">
+
+      <div class="user">
+         <img src="{{truckpartner.t_picture.url}}" alt="">
+         <h3>{{truckpartner.t_name}}</h3>
+         <p>Delivry Partner</p>
+         <a href="{% url 'delivery_profile_update' %}" class="inline-btn">update profile</a>
+      </div>
+
+      <div class="box" style="height: 70rem; box-shadow: 1px 1px 2px 1px #aaaaaa;">
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Name : <span style="color:#aaaaaa;">{{truckpartner.t_name}}</span></h2>
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Package Type : <span style="color:#aaaaaa;">{{truckpartner.package_type}}</span></h2> 
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Package Start Date : <span style="color:#aaaaaa;">{{truckpartner.start_date}}</span></h2> 
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Package End Date : <span style="color:#aaaaaa;">{{truckpartner.end_date}}</span></h2> 
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Email : <span style="color:#aaaaaa;">{{truckpartner.t_email}}</span></h2>
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Contact : <span style="color:#aaaaaa;">{{truckpartner.t_contact}}</span></h2>
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Adhaarcard : <span style="color:#aaaaaa;">{{truckpartner.t_aadharcard_details}}</span></h2>
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Pancard : <span style="color:#aaaaaa;">{{truckpartner.t_pancard_details}}</span></h2>
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your Driving Licence : <span style="color:#aaaaaa;">{{truckpartner.t_drivinglicence_details}}</span></h2>
+         <h2 style="color: #94CA21; padding-top: 4.5rem; padding-left: 4.5rem;">Your RC BOOK NO : <span style="color:#aaaaaa;">{{truckpartner.t_rcnumber}}</span></h2>
+      </div>
+
+      
+      
+      <div class="box-container" style="margin-top: 20px;">
+         <div class="box" style="box-shadow: 1px 1px 2px 1px #aaaaaa;">
+            <div class="flex">
+               <i class="fas fa-bookmark"></i>
+               <div>
+                  <span>{{ride.total_trip}}</span>
+                  <p>Total Trip</p>
+               </div>
+            </div>
+            <!--<a href="#" class="inline-btn">view</a>-->
+         </div>
+   
+         <div class="box" style="box-shadow: 1px 1px 2px 1px #aaaaaa;"  >
+            <div class="flex">
+               <i class="fa-solid fa-indian-rupee-sign"></i>
+               <div>
+                  <span>{{ride.today_earning}}</span>
+                  <p>Today Erning</p>
+               </div>
+            </div>
+            <!--<a href="#" class="inline-btn">view liked</a>-->
+         </div>
+   
+         <div class="box" style="box-shadow: 1px 1px 2px 1px #aaaaaa;">
+            <div class="flex">
+               <i class="fa-solid fa-indian-rupee-sign"></i>
+               <div>
+                  <span>{{ride.total_earning}}</span>
+                  <p>Total Erning</p>
+               </div>
+            </div>
+            <!--<a href="#" class="inline-btn">view comments</a>-->
+         </div>
+   
+      </div>
+   </div>
+
+</section>
+
+
+{% endblock %}

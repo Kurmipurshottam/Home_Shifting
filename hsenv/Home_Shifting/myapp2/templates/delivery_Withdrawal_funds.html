@@ -1,0 +1,29 @@
+{% extends "delivery_header.html" %}
+{% load static %} 
+{% block  content%}
+<section class="form-container">
+
+   <form action="{% url 'Withdrawal_funds' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>Withdrawal now</h3>
+      <p>Account holder name <span>*</span></p>
+      <input type="text"  placeholder="enter account holder name" name="hname" required maxlength="50" class="box">
+
+      <p>Account Number <span>*</span></p>
+      <input type="number" placeholder="enter your account number" name="accountno" required maxlength="50" class="box">
+
+      <p> Confirm Account Number <span>*</span></p>
+      <input type="number" placeholder="enter your account number" name="caccountno" required maxlength="50" class="box">
+
+      <p>IFSC code <span>*</span></p>
+      <input type="text"  placeholder="enter IFSC code" name="ifsc_code" required maxlength="50" class="box">
+
+      <p>Withdrawal Amount <span>*</span></p>
+      <input type="number" placeholder="Enter Withdrawal amount" name="amount" required maxlength="20" class="box">
+
+      <input type="submit" value="Withdraw now" name="submit" class="btn"> 
+   </form>
+
+</section>
+
+{% endblock  %}

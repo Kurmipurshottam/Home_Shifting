@@ -1,0 +1,42 @@
+{% include "header.html" %}
+{% load static %}
+
+    <section id="hero" class=" position-relative overflow-hidden">
+        <div class="pattern-overlay pattern-right position-absolute">
+            <img src=" {% static 'myapp/images/hero-pattern-right.png' %}" alt="pattern">
+        </div>
+        <div class="pattern-overlay pattern-left position-absolute">
+            <img src=" {% static 'myapp/images/hero-pattern-left.png' %}" alt="pattern">
+        </div>
+        <div class="hero-content container text-center">
+            <div class="row">
+                <div class="detail mb-4">
+                    <h1 class="">About us <span class="text-primary">  </span> </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!--booking from-->
+    <section id="faq">
+
+        <div class="container my-5 py-5 ">
+            <h2 class=" text-center my-5">
+                WHO ARE <span class="text-primary"> WE? </span> </h2>
+
+            
+            <div class="accordion col-md-8 offset-md-2" id="accordionPanelsStayOpenExample">
+                <p>
+                    "Home shifting" refers to the process of relocating or moving from one residence to another. It involves transporting household belongings, furniture, and personal items from the current home 
+                    to a new one. Home shifting can be a local move within the same city or a long-distance move to a different region but we provide only in Ahmedabad.
+                </p>
+                <p>
+                    When People want to shift home from one location to other location so contact profesional services known as movers.This profesional help people to transporting one location to new one.
+                </p>
+            </div>
+            
+
+        </div>
+    </section>
+
+{% include "footer.html" %}

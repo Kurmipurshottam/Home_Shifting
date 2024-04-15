@@ -1,0 +1,88 @@
+
+{% load static %}
+<html>
+<head>
+    <title>
+        My Order Track
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="{% static 'myapp/css/progress_bar.css' %}" rel="stylesheet" type="text/css"/>
+</head><!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Delivery Steps Count </title>
+    <link rel="stylesheet" href="{% static 'myapp/css/progress_bar.css'%}">
+</head>
+<style>
+    /* Add custom CSS for header and footer */
+    header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    header img {
+        height: 50px; /* Adjust the height of your logo */
+        width: auto;
+    }
+    
+    header nav {
+        margin-top: 10px;
+    }
+    
+    header nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+</style>
+<body>
+     <section class="container">
+        <ul class="container-list">
+            <h2 class="text-center my-5 pb-5">
+                Our Shifting <span class="text-primary"> process </span>
+            </h2>
+            <li class="container-item {% if booking.status == 'house-type' or booking.status == 'Booking' or booking.status == 'payment-status' or booking.status == 'on-the-way' or booking.status == 'Cancel' or booking.status == 'Finisha Process' %}active{% else %}unActive{% endif %}">
+                <a href="#" class="count">1</a>
+                <a href="#" class="progress" style="height: 3rem;"><h3>house-type</h3></a>
+            </li>
+            <li class="container-item {% if booking.status == 'Booking' or booking.status == 'payment-status' or booking.status == 'on-the-way' or booking.status == 'Cancel' or booking.status == 'Finisha Process' %}active{% else %}unActive{% endif %}">
+                <a href="#" class="count">2</a>
+                <a href="#" class="progress" style="height: 3rem;"><h3>Booking</h3></a>
+            </li>
+            
+            <li class="container-item {% if booking.status == 'Booking' or booking.status == 'Cancel' or booking.status == 'Finisha Process' %}active{% else %}unActive{% endif %}">
+                <a href="#" class="count">3</a>
+                <a href="#" class="progress" style="height: 3rem;"><h3>on-the-way</h3></a>
+            </li>
+            <li class="container-item {% if booking.status == 'cancel' or booking.status == 'Finisha Process' %}active{% else %}unActive{% endif %}">
+                <a href="#" class="count">4</a>
+                <a href="#" class="progress" style="height: 3rem;"><h3>Cancel</h3></a>
+            </li>
+            <li class="container-item {% if booking.status == 'finish' %}active{% else %}unActive{% endif %}">
+                <a href="#" class="count">5</a>
+                <a href="#" class="progress" style="height: 3rem;"><h3>Finisha Process</h3></a>
+            </li>
+        </ul>
+    </section>
+    
+    
+</body> 
+</html>

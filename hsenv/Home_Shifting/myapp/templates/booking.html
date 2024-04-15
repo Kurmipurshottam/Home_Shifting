@@ -1,0 +1,91 @@
+{% include "header.html" %}
+{% load static %}
+
+    <section id="hero" class=" position-relative overflow-hidden">
+        <div class="pattern-overlay pattern-right position-absolute">
+            <img src="{% static 'myapp/images/hero-pattern-right.pn' %}g" alt="pattern">
+        </div>
+        <div class="pattern-overlay pattern-left position-absolute">
+            <img src="{% static 'myapp/images/hero-pattern-left.png' %}" alt="pattern">
+        </div>
+        <div class="hero-content container text-center">
+            <div class="row">
+                <div class="detail mb-4">
+                    <h1 class="">Booking <span class="text-primary">  </span> </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!--booking from-->
+    <section id="faq">
+
+        <div class="container my-5 py-5 ">
+            <h2 class=" text-center my-5">Booking <span class="text-primary"> Ride</span> </h2>
+
+            
+            <div class="accordion col-md-8 offset-md-2" id="accordionPanelsStayOpenExample">
+                <form class="row g-3" method="POST" action="{% url "booking" %}">
+                  {% csrf_token %}
+                    <div class="col-md-12">
+                      <label for="inputEmail4" class="form-label">Name</label>
+                      <input type="Name" class="form-control" id="inputEmail4" placeholder="Name" name="name" required>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="inputEmail4" class="form-label">Select House Type</label>
+                      <select class="form-select form-control p-3" id="houseType" aria-label="Default select example" style="background-image: none;" name="htype" required>
+                          <option value="" >Select House type</option>
+                          <option value="1 BHK" data-price="4000">1 BHK</option>
+                          <option value="2 BHK" data-price="7000">2 BHK</option>
+                          <option value="3 BHK" data-price="9000">3 BHK</option>
+                          <option value="4 BHK" data-price="15000">4 BHK</option>
+                      </select>
+                  </div>
+                  <div class="col-md-12">
+                      <label for="inputEmail4" class="form-label">Price</label>
+                      <input type="text" class="form-control" id="price" placeholder="Price" name="price" readonly>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="inputEmail4" class="form-label">Moving To</label>
+                    <textarea name="moving_from" class="form-control" cols="20" rows="5" ></textarea>
+                </div>
+                <div class="col-md-12">
+                  <label for="inputEmail4" class="form-label">Moving To</label>
+                  <textarea name="moving_to" class="form-control" cols="20" rows="5" ></textarea>
+              </div>
+
+                      <!-- <div class="col-md-12">
+                        <label for="inputEmail4" class="form-label">Moving From</label>
+                        <input type="text" class="form-control"  placeholder="Pick-up Location" name="moving_from" required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputEmail4" class="form-label">Moving To</label>
+                        <input type="text" class="form-control"  placeholder="Drop Location" name="moving_to" required>
+                      </div> -->
+                
+                     <div class="col-md-12">
+                      <label for="inputEmail4" class="form-label">State</label>
+                      <input type="text" class="form-control" placeholder="State" name="state" required>
+                    </div>
+                    
+                    <div class="col-md-12">
+                      <label for="inputZip" class="form-label">Zip</label>
+                      <input type="text" class="form-control" id="inputZip" placeholder="zip code" name="zipcode" required>
+                    </div>
+                    <div class="d-grid">
+                      <button type="submit"  class="btn btn-primary  ">Book</button>
+                    </div>
+
+
+
+                  </form>
+            </div>
+            
+
+        </div>
+    </section>
+
+
+    
+    <!-- Footer Section Starts -->
+{% include "footer.html" %}

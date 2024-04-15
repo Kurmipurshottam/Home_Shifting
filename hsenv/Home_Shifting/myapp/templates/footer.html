@@ -1,0 +1,237 @@
+{%load static%}
+    <!-- Footer Section Starts -->
+    <section id="footer">
+        <div class="container footer-container mt-5">
+            <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 my-5 py-5 ">
+
+                <div class=" col-md-4 mt-5 mt-md-0 ">
+                    <img src="{% static 'myapp/images/hm.png' %}" alt="image">
+                    <p class="py-3"> Shift Your Home Anywhere,Anytime <br>in Ahmedabad</p>
+                    <div class="d-flex align-items-center ">
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:facebook"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:twitter"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:instagram"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:linkedin"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:youtube"></iconify-icon></a>
+                    </div>
+
+                </div>
+
+                <div class="col-md-7 offset-md-1 mt-5">
+                    <ul class="footer-nav list-unstyled ">
+                        <li class="nav-item me-2 mb-3">
+                            <a class="nav-link px-4" aria-current="page" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item me-2 mb-3">
+                            <a class="nav-link px-4" href="{% url 'vehical' %}">Vehicals</a>
+                        </li>
+                        <li class="nav-item me-2 mb-3">
+                            <a class="nav-link px-4" href="{% url 'booking' %}">Booking</a>
+                        </li>
+                        <li class="nav-item me-2 mb-3">
+                            <a class="nav-link px-4" href="{% url 'service' %}">Services</a>
+                        </li>
+                        <li class="nav-item me-2 mb-3">
+                            <a class="nav-link px-4" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item me-2 mb-3">
+                            <a class="nav-link px-4" href="{% url 'about' %}">About</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </footer>
+        </div>
+
+
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center border-top"></footer>
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 pt-4">
+                <div class="col-md-6 d-flex align-items-center">
+                    <p>© 2024 Home Shifting - All rights reserved</p>
+
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+                    <p class="">Home Shifting</p>
+                </div>
+
+            </footer>
+        </div>
+    </section>
+
+
+
+
+    <!-- script ================================================== -->
+    <script src="{% static 'myapp/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'myapp/js/plugins.js' %}"></script>
+    <script src="{% static 'myapp/js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+          // ragistration sucessfully 
+          document.addEventListener("DOMContentLoaded", function () {
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        title: "{{ message }}",
+                        //text: "{{ message }}",
+                        icon: "{{ message.tags }}",
+                    });
+                {% endfor %}
+            {% endif %}
+        });
+
+        // email alredy exsits
+        {% if messages %}
+            {% for message in messages %}
+                Swal.fire({
+                    title: "{{ message.tags }}",
+                    text: "{{ message }}",
+                    icon: "{{ message.tags }}",
+                });
+            {% endfor %}
+        {% endif %}
+
+        // upassword and ucpassword can not be same show sweetalert msg
+        {% if pmsg %}
+        Swal.fire({
+            title: 'Error!',
+            text: '{{ pmsg }}',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        {% endif %}
+    </script>
+ 
+        <script>
+            //================================================Change Password js==================================================================
+                // Function to handle password reset (you need to implement this based on your backend logic)
+                function resetPassword() {
+                    // Get the entered new password
+                    var newPassword = $('#newPassword').val();
+            
+                    // Get the entered confirm password
+                    var confirmPassword = $('#confirmPassword').val();
+            
+                    
+                }
+                function changePassword() {
+                    // Implement your change password logic here
+                    // Retrieve values from the change password form using jQuery
+                    var currentPassword = $('#currentPassword').val();
+                    var newPassword = $('#newPassword').val();
+                    var confirmNewPassword = $('#confirmNewPassword').val();
+            
+                    // Add your logic for changing the password
+            
+                    // After changing the password, you can close the modal
+                    $('#changePasswordModal').modal('hide');
+                }
+            </script> 
+        
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Get references to the select and price input
+                    var houseTypeSelect = document.getElementById('houseType');
+                    var priceInput = document.getElementById('price');
+            
+                    // Add an event listener to the select element
+                    houseTypeSelect.addEventListener('change', function () {
+                        // Get the selected option
+                        var selectedOption = houseTypeSelect.options[houseTypeSelect.selectedIndex];
+            
+                        // Get the price from the data attribute
+                        var price = selectedOption.getAttribute('data-price');
+            
+                        // Update the price input field
+                        priceInput.value = price;
+                    });
+                });
+            </script>
+
+
+
+
+
+
+
+
+               <!-- Razorpay integration -->
+               <input type="hidden" id="razorpay_order_id" name="razorpay_order_id">
+               <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+               <script>
+                   document.addEventListener('DOMContentLoaded', function () {
+                       var houseTypeSelect = document.getElementById('houseType');
+                       var priceInput = document.getElementById('price');
+                       var razorpayOrderIdInput = document.getElementById('razorpay_order_id');
+
+                       houseTypeSelect.addEventListener('change', function () {
+                           var selectedOption = houseTypeSelect.options[houseTypeSelect.selectedIndex];
+                           var selectedPrice = selectedOption.getAttribute('data-price');
+                           priceInput.value = selectedPrice;
+
+                           // Fetch Razorpay order ID from your Django view
+                           fetch('{% url "booking" %}', {
+                               method: 'POST',
+                               headers: {
+                                   'Content-Type': 'application/json',
+                                   'X-CSRFToken': '{{ csrf_token }}',
+                               },
+                               body: JSON.stringify({
+                                   amount: selectedPrice * 100,  // Convert to paisa
+                               }),
+                           })
+                           .then(response => response.json())
+                           .then(data => {
+                               razorpayOrderIdInput.value = data.order_id;
+                           });
+                       });
+
+                       // Razorpay checkout script
+                       var razorpayOrderID = "{{ order_id }}";  // Replace with the correct template variable
+                       var options = {
+                           key: "{{ settings.RAZORPAY_KEY_ID }}",  // Replace with your actual Razorpay key
+                           amount: {{ amount }},  // Amount in paisa
+                           currency: "{{ currency }}",  // Replace with your currency code
+                           name: "{{ name }}",  // Replace with the user's name or any other identifier
+                           description: "Booking Payment",
+                           order_id: razorpayOrderID,
+                           handler: function (response) {
+                               // Handle the success callback, e.g., update the booking status
+                               // You may want to make an AJAX request to your server to update the payment status
+                               console.log('Payment successful:', response);
+
+
+                           },
+                           prefill: {
+                               name: "{{ name }}",
+                               email: "{{ request.session.uemail }}",  // Replace with the user's email
+                           },
+                       };
+
+                       var rzp = new Razorpay(options);
+                       rzp.open();
+                   });
+               </script> 
+
+</body>
+
+</html>

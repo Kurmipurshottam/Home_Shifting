@@ -1,0 +1,420 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Shifting</title>
+
+    <!--vendor css ================================================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/vendor.css' %}">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!--Bootstrap ================================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Style Sheet ================================================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css'%}">
+
+    <!-- Google Fonts ================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Raleway:wght@400;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- script ================================================== -->
+    <script src="{% static 'myapp/js/modernizr.js' %}"></script>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
+    <!--Header -->
+    <nav class="navbar navbar-expand-lg  navbar-light container-fluid py-3 position-fixed ">
+        <div class="container">
+            <a class="navbar-brand" href="{% url "index" %}"><img src="{% static 'myapp/images/hm.png' %}" alt="logo" style="height: 40px; width: 150px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav align-items-center justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active px-3" aria-current="page" href="{% url "delivery_signup" %}">Home</a>
+                        </li>
+                       
+                        <!-- <li class="nav-item">
+                            <a class="nav-link px-3" href="index.html#services">Services</a>
+                        </li>
+                       -->
+                        <li class="nav-item">
+                            <a class="nav-link px-3" href="{% url "contact" %}">Contact</a>
+                        </li>
+                        
+                        
+
+                    </ul>
+
+                    <div class="d-flex mt-5 mt-lg-0 ps-xl-5 align-items-center justify-content-center ">
+                       
+                       
+                        <!-- Modal -->
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="hero" class=" position-relative overflow-hidden">
+        <div class="pattern-overlay pattern-right position-absolute">
+            <img src="{% static 'myapp/images/hero-pattern-right.png'%}" alt="pattern">
+        </div>
+        <div class="pattern-overlay pattern-left position-absolute">
+            <img src="{% static 'myapp/images/hero-pattern-left.png'%}" alt="pattern">
+        </div>
+        <div class="hero-content container text-center">
+            <div class="row">
+                <div class="detail mb-">
+                    <h1 class="">Choose<span class="text-primary"> Packages</span> </h1>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- pricing section start  -->
+<!-- pricing section start  -->
+<section id="pricing">
+    <div class=" container  py-5 my-5">
+
+        <div class="d-flex justify-content-center">
+            <label class="pt-2" id="monthly-label" style="display: none;">Monthly</label>
+            <span class="form-check form-switch p-0">
+                <input class="form-check-input mx-2" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                    checked style="display: none;">
+                <label class="pt-2" id="yearly-label" for="flexSwitchCheckChecked" style="display: none;">Yearly</label>
+            </span>
+        </div>
+
+        <div class="row py-4">
+            <div class="  col-lg-3 col-sm-6 col-12 pb-4">
+                <div class=" pricing-lable pt-5 ">
+                    <div class="pt-3 ps-2">
+                        <h3>Save by choosing our best plan</h3>
+                        <p>Choose our best plan to save a lot.</p>
+                    </div>
+
+                    <iconify-icon class="pricing-lable-icon "
+                        icon="fluent:vehicle-car-profile-ltr-20-regular"></iconify-icon>
+
+
+                </div>
+            </div>
+
+            <div class=" col-lg-3 col-sm-6 col-12 pb-8">
+                <div class=" pricing-detail py-5 text-center">
+                    <div class="pricing-content">
+                        <h5>Silver</h5>
+
+                        
+                        <div class="content yearly pt-2">
+                            <h3><img src="{% static 'myapp/images/currency-rupee.svg' %} " style="height: 2rem; padding-bottom: 0.3rem;" alt="">10000</h3>
+                        </div>
+
+                        <div class="pt-4">
+                            <p>✓ There are 20 fix trips</p>
+                            <p>✓ Only can send 1BHK And 2BHK</p>
+                            <p>✓ IF we Can not able to<br>
+                                provide Fixed Trips then<br> 
+                                provide package money with<br>
+                                20% extra return and completed<br> 
+                                trips in 75% go to partner<br>
+                                and 25% is our margin.<br>
+                            </p>
+                            <p>✓ IF we give trips then all<br>
+                                money can withdrew by partner<br>
+                                after completing package<br>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="pricing-button">
+                        <a href="{% url 'packages' %}"><button class="btn btn-primary">Choose Plan </button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-lg-3 col-sm-6 col-12 pb-4">
+                <div class=" pricing-detail py-5  text-center">
+                    <div class="pricing-content">
+                        <h5>Gold</h5>
+                        
+                        <div class="content yearly pt-2">
+                            <h3><img src="{% static 'myapp/images/currency-rupee.svg' %} " style="height: 2rem; padding-bottom: 0.3rem;" alt="">20000</h3>
+                        </div>
+
+                        <div class="pt-4">
+                            <p>✓ There are 25 fix trips</p>
+                            <p>✓ Only can send 2BHK And 3BHK</p>
+                            <p>✓ IF we Can not able to<br>
+                                provide Fixed Trips then<br> 
+                                provide package money with<br>
+                                25% extra return and completed<br> 
+                                trips in 80% go to partner<br>
+                                and 20% is our margin.<br>
+                            </p>
+                            <p>✓ IF we give trips then all<br>
+                                money can withdrew by partner<br>
+                                after completing package<br>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="pricing-button">
+                        <a href="{% url 'packages' %}"><button class="btn btn-primary">Choose Plan </button></a>
+                    </div> 
+                </div>
+            </div>
+
+            <div class=" col-lg-3 col-sm-6 col-12 pb-4">
+                <div class=" pricing-detail py-5  text-center">
+                    <div class="pricing-content">
+                        <h5>Platinum</h5>
+                        
+                        <div class="content yearly pt-2">
+                            <h3><img src="{% static 'myapp/images/currency-rupee.svg' %} " style="height: 2rem; padding-bottom: 0.3rem;" alt="">30000</h3>
+                        </div>
+
+                        <div class="pt-4">
+                            <p>✓ There are 30 fix trips</p>
+                            <p>✓ Only can send all type of Home</p>
+                            <p>✓ IF we Can not able to<br>
+                                provide Fixed Trips then<br> 
+                                provide package money with<br>
+                                30% extra return and completed<br> 
+                                trips in 90% go to partner<br>
+                                and 10% is our margin.<br>
+                            </p>
+                            <p>✓ IF we give trips then all<br>
+                                money can withdrew by partner<br>
+                                after completing package<br>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="pricing-button">
+                        <a href="{% url 'packages' %}"><button class="btn btn-primary">Choose Plan </button></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</section>
+    
+    <!-- Footer Section Starts -->
+    <section id="footer">
+        <div class="container footer-container mt-5">
+            <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 my-5 py-5 ">
+
+                <div class=" col-md-4 mt-5 mt-md-0 ">
+                    <img src="{% static 'myapp/images/hm.png'%}" alt="image">
+                    <p class="py-3"> Shift Your Home Anywhere,Anytime <br>in Ahmedabad</p>
+                    <div class="d-flex align-items-center ">
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:facebook"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:twitter"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:instagram"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:linkedin"></iconify-icon></a>
+                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:youtube"></iconify-icon></a>
+                    </div>
+
+                </div>
+            </footer>
+        </div>
+
+
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center border-top"></footer>
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 pt-4">
+                <div class="col-md-6 d-flex align-items-center">
+                    <p>© 2024 Home Shifting - All rights reserved</p>
+
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+                    <p class="">Home Shifting</p>
+                </div>
+
+            </footer>
+        </div>
+    </section>
+    
+    <!-- JavaScript-->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script>
+        <script src="{% static 'myapp2/js/script.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+           <script>
+                 // ragistration sucessfully 
+                 document.addEventListener("DOMContentLoaded", function () {
+                   {% if messages %}
+                       {% for message in messages %}
+                           Swal.fire({
+                               title: "{{ message }}",
+                               //text: "{{ message }}",
+                               icon: "{{ message.tags }}",
+                           });
+                       {% endfor %}
+                   {% endif %}
+               });
+       
+           // email alredy exsits
+               {% if messages %}
+                   {% for message in messages %}
+                       Swal.fire({
+                           title: "{{ message.tags }}",
+                           text: "{{ message }}",
+                           icon: "{{ message.tags }}",
+                       });
+                   {% endfor %}
+               {% endif %}
+       
+               // upassword and ucpassword can not be same show sweetalert msg
+               {% if pmsg %}
+               Swal.fire({
+                   title: 'Error!',
+                   text: '{{ pmsg }}',
+                   icon: 'error',
+                   confirmButtonText: 'OK'
+               });
+               {% endif %}
+           </script>
+       
+       
+           <Script>
+               // Function to handle password reset (you need to implement this based on your backend logic)
+               function resetPassword() {
+                   // Get the entered new password
+                   var newPassword = $('#newPassword').val();
+           
+                   // Get the entered confirm password
+                   var confirmPassword = $('#confirmPassword').val();
+           
+                   
+               }
+               function changePassword() {
+                   // Implement your change password logic here
+                   // Retrieve values from the change password form using jQuery
+                   var currentPassword = $('#currentPassword').val();
+                   var newPassword = $('#newPassword').val();
+                   var confirmNewPassword = $('#confirmNewPassword').val();
+           
+                   // Add your logic for changing the password
+           
+                   // After changing the password, you can close the modal
+                   $('#changePasswordModal').modal('hide');
+               }
+           </Script>         
+            <script>
+                window.onload = function() {
+                    // Get references to the select element and the package price input field
+                    var packageTypeSelect = document.getElementById("package_type");
+                    var packagePriceInput = document.getElementById("package_price");
+            
+                    // Add event listener to the select element
+                    packageTypeSelect.addEventListener("change", function() {
+                        // Get the selected option
+                        var selectedOption = packageTypeSelect.options[packageTypeSelect.selectedIndex];
+            
+                        // Update the package price input field with the data-price attribute of the selected option
+                        packagePriceInput.value = selectedOption.getAttribute("data-price");
+                    });
+            
+                    // Trigger the change event on page load to initialize the package price
+                    packageTypeSelect.dispatchEvent(new Event('change'));
+                };
+            </script>
+
+
+
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+                var options = {
+                    "key": "rzp_test_3iCOPLbchUyIwQ", // Enter the Key ID generated from the Dashboard
+                    "amount": "11000000",// Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Home Shifting",
+                    "description": "Test Payment",
+                    "image": "{% static 'myapp/images/hm.png' %}",
+                    "order_id": "{{payment.razorpay_order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "handler": function (response){
+        
+                        window.location.href=`http://localhost:8000/success?razorpay_payment_id=${response.razorpay_payment_id}`
+        
+                        
+                    },
+                    "theme": {
+                        "color": "#94CA21"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response){
+                        alert(response.error.code);
+                        alert(response.error.description);
+                        alert(response.error.source);
+                        alert(response.error.step);
+                        alert(response.error.reason);
+                        alert(response.error.metadata.order_id);
+                        alert(response.error.metadata.payment_id);
+                });
+                document.getElementById('rzp-button1').onclick = function(e){
+                    rzp1.open();
+                    e.preventDefault();
+                }
+            </script>            
+  
+
+
+                    
+                        
+
+            
+                        
+
+</body>
+
+</html>

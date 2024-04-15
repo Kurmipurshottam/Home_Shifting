@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Partner profile</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static 'myapp2/css/style.css' %}">
+
+
+</head>
+<body>
+
+   <header class="header" style="width: 100%;">
+   
+      <section class="flex">
+   
+         <a href="{% url 'delivery_index' %}" class="logo">Home Shifting</a>
+   <!--
+         <form action="search.html" method="post" class="search-form">
+            <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+            <button type="submit" class="fas fa-search"></button>
+         </form>
+      -->
+   
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user" style="display: none;"></div>
+            <div id="toggle-btn" class="fas fa-sun" ></div>
+         </div>
+   
+         <div class="profile">
+            <img src="{% static 'myapp2/images/pic-1.jpg' %}" class="image" alt="">
+            <h3 class="name">Your Name</h3>
+            <p class="role">Delivery Partner</p>
+            <a href="{% url 'delivery_profile' %}" class="btn">view profile</a>
+            <div class="flex-btn">
+               <a href="{% url 'delivery_login' %}" class="option-btn">login</a>
+               <a href="" class="option-btn">logout</a>
+            </div>
+         </div>
+   
+      </section>
+   
+   </header> 
+   <div class="side-bar">
+
+      <div id="close-btn">
+         <i class="fas fa-times"></i>
+      </div>
+   
+     
+   <img src="{% static 'myapp2/images/77-removebg-preview.png' %}" alt="" style="height: 500px; margin-top: 10rem; margin-left: 3rem;">      
+   
+   </div> 
+
+<section class="form-container" >
+
+   <form action="{% url 'delivery_login' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>login now</h3>
+      <p>your email <span>*</span></p>
+      <input type="email" name="email" placeholder="enter your email" required maxlength="50" class="box">
+      <p>your password <span>*</span></p>
+      <input type="password" name="pass" placeholder="enter your password" required maxlength="20" class="box">
+      <input type="submit" value="login new" name="submit" class="btn">
+      <a href="{% url 'delivery_signup' %}" style="text-align: center;"><p>Do you Don't have Your account</p></a>
+      <a href="" style="text-align: center;"><p>Forgot password</p></a>
+   </form>
+
+</section>
+
+
+<!-- custom js file link  -->
+<script src="{% static 'myapp2/js/script.js' %}"></script>
+<script src="{% static 'myapp2/js/script.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script>
+         // ragistration sucessfully 
+         document.addEventListener("DOMContentLoaded", function () {
+           {% if messages %}
+               {% for message in messages %}
+                   Swal.fire({
+                       title: "{{ message }}",
+                       //text: "{{ message }}",
+                       icon: "{{ message.tags }}",
+                   });
+               {% endfor %}
+           {% endif %}
+       });
+
+   // email alredy exsits
+       {% if messages %}
+           {% for message in messages %}
+               Swal.fire({
+                   title: "{{ message.tags }}",
+                   text: "{{ message }}",
+                   icon: "{{ message.tags }}",
+               });
+           {% endfor %}
+       {% endif %}
+
+       // upassword and ucpassword can not be same show sweetalert msg
+       {% if pmsg %}
+       Swal.fire({
+           title: 'Error!',
+           text: '{{ pmsg }}',
+           icon: 'error',
+           confirmButtonText: 'OK'
+       });
+       {% endif %}
+   </script>
+
+
+   <Script>
+       // Function to handle password reset (you need to implement this based on your backend logic)
+       function resetPassword() {
+           // Get the entered new password
+           var newPassword = $('#newPassword').val();
+   
+           // Get the entered confirm password
+           var confirmPassword = $('#confirmPassword').val();
+   
+           
+       }
+       function changePassword() {
+           // Implement your change password logic here
+           // Retrieve values from the change password form using jQuery
+           var currentPassword = $('#currentPassword').val();
+           var newPassword = $('#newPassword').val();
+           var confirmNewPassword = $('#confirmNewPassword').val();
+   
+           // Add your logic for changing the password
+   
+           // After changing the password, you can close the modal
+           $('#changePasswordModal').modal('hide');
+        }
+   </Script>
+</body>
+</html>

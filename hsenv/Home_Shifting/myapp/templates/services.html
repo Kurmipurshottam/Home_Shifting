@@ -1,0 +1,136 @@
+{% include "header.html" %}
+{% load static %}
+<section id="hero" class=" position-relative overflow-hidden">
+    <div class="pattern-overlay pattern-right position-absolute">
+        <img src="{% static 'myapp/images/hero-pattern-right.pn' %}g" alt="pattern">
+    </div>
+    <div class="pattern-overlay pattern-left position-absolute">
+        <img src="{% static 'myapp/images/hero-pattern-left.png' %}" alt="pattern">
+    </div>
+    <div class="hero-content container text-center">
+        <div class="row">
+            <div class="detail mb-4">
+                <h1 class="">services<span class="text-primary">  </span> </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="services">
+
+    <div class="container  py-5 my-5">
+        <div class="row py-5 ">
+            <div class=" pb-5  col-10 col-sm-8 col-lg-6">
+                <h2 class="">See our <span class="text-primary"> home shifting</span> services </h2>
+            </div>
+            <div class=" pb-5  col-lg-6">
+                <p class="pt-4">Home Shifting is about providing services in which the system is used as web-site. Home Shifting is a web-site. Using this web-site a user can Shift home from one Location to other Location without going anywhere at any time from in Ahmedabad. User can connect the vehicle driver and book the vehicle for shifting home as per the requirement. </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="service-2">
+    <div class=" services-sub container mb-5 pb-5">
+        <div class="row">
+            <div class=" mt-4 col-6 col-lg-3">
+                <div class="services-components text-center pt-4 pb-3">
+                    <iconify-icon class="services-icon my-2" icon="solar:shield-check-outline"></iconify-icon>
+                    <h5>Secured Payment</h5>
+                </div>
+            </div>
+            <div class=" mt-4 col-6 col-lg-3">
+                <div class="services-components text-center pt-4 pb-3">
+                    <iconify-icon class="services-icon my-2" icon="solar:bookmark-opened-outline"></iconify-icon>
+                    <h5>any class vehicle</h5>
+                </div>
+            </div>
+            <div class=" mt-4 col-6 col-lg-3">
+                <div class="services-components text-center pt-4 pb-3">
+                    <iconify-icon class="services-icon my-2" icon="solar:map-arrow-square-outline"></iconify-icon>
+                    <h5>Tracking options</h5>
+                </div>
+            </div>
+            <div class=" mt-4 col-6 col-lg-3">
+                <div class="services-components text-center pt-4 pb-3">
+                    <i class="bi bi-geo-fill"></i>
+                    <iconify-icon class="services-icon my-2" icon="solar:call-chat-outline"></iconify-icon>
+                    <h5>Contact us</h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- faq section start  -->
+<section id="faq">
+
+    <div class="container my-5 py-5 ">
+        <h2 class=" text-center my-5">We’ve got <span class="text-primary"> answers</span> </h2>
+
+
+        <div class="accordion col-md-8 offset-md-2" id="accordionPanelsStayOpenExample">
+
+            <div class="accordion-item mt-3">
+                <h5 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        What is Home Shifting ?
+                    </button>
+                </h5>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <p>Home shifting is the web-application to shift home from one location to other location.you just ragister yourself in web-application you want to shift your home so make booking and with the home shifting you will get verified driver and vehical in few easy steps.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="accordion-item mt-3">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        How do I use Home Shifting Web-Application ?
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <p><b>There are some easy setps to use Home Shifting Web-Application </b>
+                           <br> 1. Open Home Shifting Website 
+                           <br> 2. Register with us 
+                           <br> 3. Select Vehical As You requirement 
+                           <br> 4. Select your pick up and delivery locations
+                           <br> 5. make a payment and click on book </p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="accordion-item mt-3">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        What does Home Shifting Shift ?
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        <p>From pin to an entire House shift anytime anywhere in Ahmedabad.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+        </div>
+
+    </div>
+</section>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* @use postcss-preset-env {
+  stage: 0;
+} */
+
+:root {
+  --color-background: #e6e6e6;
+  --color-primary: #94CA21;
+  --font-family-base: Poppin, sans-serif;
+  --font-size-h1: 1.25rem;
+  --font-size-h2: 1rem;
+}
+
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-background);
+  display: grid;
+  font-family: var(--font-family-base);
+  line-height: 1.5;
+  margin: 0;
+  min-block-size: 100vh;
+  padding: 5vmin;
+  place-items: center;
+}
+
+address {
+  font-style: normal;
+}
+
+button {
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: 1.2;
+  margin-block: 0 1.5em;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: 1.2;
+  margin-block: 0 0.5em;
+}
+
+legend {
+  font-weight: 600;
+  margin-block-end: 0.5em;
+  padding: 0;
+}
+
+input {
+  border: 0;
+  color: inherit;
+  font: inherit;
+}
+
+input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+table {
+  border-collapse: collapse;
+  inline-size: 100%;
+}
+
+tbody {
+  color: #b4b4b4;
+}
+
+td {
+  padding-block: 0.125em;
+}
+
+tfoot {
+  border-top: 1px solid #b4b4b4;
+  font-weight: 600;
+}
+
+.align {
+  display: grid;
+  place-items: center;
+}
+
+.button {
+  align-items: center;
+  background-color: var(--color-primary);
+  border-radius: 999em;
+  color: #fff;
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  padding-block: 0.75em;
+  padding-inline: 1em;
+  transition: 0.3s;
+}
+
+.button:focus,
+.button:hover {
+  background-color: #222222;
+}
+
+.button--full {
+  inline-size: 100%;
+}
+
+.card {
+  border-radius: 1em;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 1em;
+}
+
+.form {
+  display: grid;
+  gap: 2em;
+}
+
+.form__radios {
+  display: grid;
+  gap: 1em;
+}
+
+.form__radio {
+  align-items: center;
+  background-color: #fefdfe;
+  border-radius: 1em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
+  display: flex;
+  padding: 1em;
+}
+
+.form__radio label {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 1em;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding-block: 0.5em;
+  padding-inline: 1em;
+}
+
+.icon {
+  block-size: 1em;
+  display: inline-block;
+  fill: currentColor;
+  inline-size: 1em;
+  vertical-align: middle;
+}
+
+.iphone {
+  background-color: #fbf6f7;
+  background-image: linear-gradient(to bottom, #fbf6f7, #fff);
+  border-radius: 2em;
+  block-size: 812px;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
+  inline-size: 375px;
+  overflow: auto;
+  padding: 2em;
+}
+
+</style>
+</head>
+<body>
+    <div class="iphone">
+        <header class="header">
+          <h1>Checkout</h1>
+        </header>
+      
+        <form action="https://httpbin.org/post" class="form" method="POST">
+          <div>
+            <h2>Pacakge Details</h2>
+      
+            <div class="card">
+              <address style="text-align: center; font-size:2rem">
+                {{truck.package_type}}<br/>
+              </address>
+            </div>
+          </div>
+      
+          
+         
+          <div>
+            <h2>trasportation Bill</h2>
+      
+            <table>
+              <tbody>
+                <tr>
+                  <td>trasportation fee</td>
+                  <td align="right">{{truck.price}}</td>
+                </tr>
+                <tr>
+                  <td>Price Total</td>
+                  <td align="right">{{truck.price}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Total</td>
+                  <td align="right">{{truck.price}}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+      
+          <div>
+            <button class="button button--full"   id="rzp-button1" type="submit"><svg class="icon" >
+                <use xlink:href="#icon-shopping-bag" />
+              </svg>Buy Now</button>
+          </div>
+        </form>
+      </div>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      
+        <symbol id="icon-shopping-bag" viewBox="0 0 24 24">
+          <path d="M20 7h-4v-3c0-2.209-1.791-4-4-4s-4 1.791-4 4v3h-4l-2 17h20l-2-17zm-11-3c0-1.654 1.346-3 3-3s3 1.346 3 3v3h-6v-3zm-4.751 18l1.529-13h2.222v1.5c0 .276.224.5.5.5s.5-.224.5-.5v-1.5h6v1.5c0 .276.224.5.5.5s.5-.224.5-.5v-1.5h2.222l1.529 13h-15.502z" />
+        </symbol>
+      
+       
+      </svg>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script>
+          var options = {
+              "key": "rzp_test_3iCOPLbchUyIwQ", // Enter the Key ID generated from the Dashboard
+              "amount": "{{payment.amount}}",// Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+              "currency": "INR",
+              "name": "Home Shifting",
+              "description": "Test Payment",
+              "image": "",
+              "order_id": "{{payment.razorpay_order_id}}", //This is a sample Order ID. Pass the id obtained in the response of Step 1
+              "handler": function (response){
+  
+                
+                window.location.href=`http://localhost:8000/attache_partner/delivery_success?razorpay_payment_id=${response.razorpay_payment_id}`
+                  // alert(response.razorpay_payment_id);
+                  // alert(response.razorpay_order_id);
+                  
+              },
+              "theme": {
+                  "color": "#94CA21"
+              }
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.on('payment.failed', function (response){
+                  alert(response.error.code);
+                  alert(response.error.description);
+                  alert(response.error.source);
+                  alert(response.error.step);
+                  alert(response.error.reason);
+                  alert(response.error.metadata.order_id);
+                  alert(response.error.metadata.payment_id);
+          });
+          document.getElementById('rzp-button1').onclick = function(e){
+              rzp1.open();
+              e.preventDefault();
+          }
+      </script>            
+
+</body>
+</html>

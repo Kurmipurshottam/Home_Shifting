@@ -1,0 +1,100 @@
+{% extends "delivery_header.html" %}
+{% load static %}
+{% block  content%}
+<section class="teacher-profile">
+
+   <section class="form-container" >
+      <form action="{% url 'delivery_login' %}" method="post" enctype="multipart/form-data">
+         {% if reject_status != True %}
+            {% if booking %}     
+               {% if booking.status != 'finish' %}
+                  {% if booking.status != 'cancel' %}
+                     <h3>Ride details</h3>
+                     <p>Move From : {{booking.movefrom}}</p>
+                     <p>Move To : {{booking.moveto}}</p>
+                     
+                     <a href="{% url "accept" %}" class="btn">accept</a>
+                     <a href="{% url "reject" %}" class="option-btn">reject</a>
+                  {% else %}
+                     <h1 style="text-align: center;">NO RIDE  AVAILABLE!</h1>
+                  {% endif %}
+               {% else %}
+                  <h1 style="text-align: center;">NO RIDE  AVAILABLE!</h1>
+               {% endif %}
+            {% else %}
+            <h1 style="text-align: center;">NO RIDE  AVAILABLE!</h1>
+            {% endif %}
+         {% else %}
+            <h1 style="text-align: center;">NO RIDE  AVAILABLE!</h1>
+         {% endif %}
+      </form>
+   </section>
+
+</section>
+
+<!-- custom js file link  -->
+<script src="{% static 'myapp2/js/script.js' %}"></script>
+<script src="{% static 'myapp2/js/script.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script>
+         // ragistration sucessfully 
+         document.addEventListener("DOMContentLoaded", function () {
+           {% if messages %}
+               {% for message in messages %}
+                   Swal.fire({
+                       title: "{{ message }}",
+                       //text: "{{ message }}",
+                       icon: "{{ message.tags }}",
+                   });
+               {% endfor %}
+           {% endif %}
+       });
+
+   // email alredy exsits
+       {% if messages %}
+           {% for message in messages %}
+               Swal.fire({
+                   title: "{{ message.tags }}",
+                   text: "{{ message }}",
+                   icon: "{{ message.tags }}",
+               });
+           {% endfor %}
+       {% endif %}
+
+       // upassword and ucpassword can not be same show sweetalert msg
+       {% if pmsg %}
+       Swal.fire({
+           title: 'Error!',
+           text: '{{ pmsg }}',
+           icon: 'error',
+           confirmButtonText: 'OK'
+       });
+       {% endif %}
+   </script>
+
+
+   <Script>
+       // Function to handle password reset (you need to implement this based on your backend logic)
+       function resetPassword() {
+           // Get the entered new password
+           var newPassword = $('#newPassword').val();
+   
+           // Get the entered confirm password
+           var confirmPassword = $('#confirmPassword').val();
+   
+           
+       }
+       function changePassword() {
+           // Implement your change password logic here
+           // Retrieve values from the change password form using jQuery
+           var currentPassword = $('#currentPassword').val();
+           var newPassword = $('#newPassword').val();
+           var confirmNewPassword = $('#confirmNewPassword').val();
+   
+           // Add your logic for changing the password
+   
+           // After changing the password, you can close the modal
+           $('#changePasswordModal').modal('hide');
+        }
+   </Script>
+{% endblock  %}
