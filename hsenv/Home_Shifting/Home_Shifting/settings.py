@@ -51,6 +51,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #for the session time out 
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
+    #end time out
 ]
 
 ROOT_URLCONF = 'Home_Shifting.urls'
@@ -154,3 +158,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kurmipurshottam@gmail.com'
 EMAIL_HOST_PASSWORD = 'urut toga dbbb jgon'
+
+# SESSION_EXPIRE_SECONDS CODE
+SESSION_EXPIRE_SECONDS = 60  # 60 seconds
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 # group by minute
+SESSION_TIMEOUT_REDIRECT = 'login'
