@@ -32,10 +32,13 @@ urlpatterns = [
     path('packages_details', views.packages_details, name='packages_details'),
     path('delivery_payments', views.delivery_payments, name='delivery_payments'),
     path('delivery_success', views.delivery_success, name='delivery_success'),
-    path('change_password', views.change_password, name='change_password'),
+    path('delivery_change_password', views.delivery_change_password, name='delivery_change_password'),
     path('Withdrawal_funds/',views.Withdrawal_funds,name='Withdrawal_funds'), 
     path('accept', views.accept, name='accept'),
     path('reject', views.reject, name='reject'),
     path('finishride', views.finishride, name='finishride'),
+    path('delivery_forget', views.delivery_forget, name='delivery_forget'),
+    path('delivery_otp', views.delivery_otp, name='delivery_otp'),
+    path('delivery_reset', views.delivery_reset, name='delivery_reset'),
 
 ]

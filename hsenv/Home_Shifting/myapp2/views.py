@@ -52,7 +52,7 @@ def delivery_login(request):
     if request.POST:
         try:
             print("check password and email")
-            truckpartner=Truckpartner.objects.get(t_email = request.POST['email'])
+            truckpartner=Truckpartner.objects.get(t_email = request.POST['email'],t_password = request.POST['pass'])
             print("hello")
             if truckpartner.razorpay_payment_id:
                 request.session['email'] = truckpartner.t_email
@@ -98,24 +98,125 @@ def delivery_logout(request):
         messages.success(request,msg)
         return redirect('delivery_signup')
 
-def change_password(request):
+def delivery_forget(request):
+    # return render(request,"delivery_forget.html")
     if request.POST:
-        truckpartner = Truckpartner.objects.get(t_email=request.session['email'])
-        if truckpartner.t_password == request.POST['old_password']:
-            if request.POST['new_password']==request.POST['cnew_password']:
-                truckpartner.t_password=request.POST['cnew_password']
-                truckpartner.save()
-                return redirect('delivery_logout')
-            else:
-                msg = "New Password conifrm new password Does not match..."
+        try:
+            print("====================================page loade =======================================")
+            truckpartner = Truckpartner.objects.get(t_contact = request.POST['contact'])
+            mobile = request.POST['contact']
+            otp = random.randint(1000,9999)
+            print(type(otp))
+
+            url = "https://www.fast2sms.com/dev/bulkV2"
+            querystring = {
+                           "authorization":"49df8FP3OhnqKAuB6OcTLAAEMmfB23tmRFHiDFZRZ7zrpONWyuhl6B3wFteN",
+                           "variables_values":str(otp),
+                           "route":"otp",
+                           "numbers":mobile
+                        }
+
+            headers = {
+                'cache-control': "no-cache"
+               }
+
+            response = requests.request("GET", url, headers=headers, params=querystring)
+            msg = "Otp Sent Successfully"
+            messages.success(request,msg)
+            print(msg)
+            print(response.text)
+            request.session['mobile']=mobile
+            request.session['otp']=otp
+            return render(request,'delivery_otp.html')
+        except Exception as e:
+                print(e)
+                print("===========except page loade==============")
+                msg = "invalid Phone Number  !!!"
                 messages.error(request,msg)
-                return redirect('change_password')
-        else:
-            msg1="Current Password Does not match !!!"
-            messages.error(request,msg1)
-            return redirect('delivery_login') 
+                return render(request,"delivery_forget.html")
     else:
-        return redirect('delivery_login')
+        print("==============================else part run ====================================")
+        return render(request,"delivery_forget.html")
+
+def delivery_otp(request):
+    if request.method=="POST":     
+        otp = int(request.session['otp'])
+        uotp = int(request.POST['uotp'])
+        print(type(otp))
+        print(type(uotp))
+        
+        if otp==uotp:
+          print("Hello")
+          del request.session['otp']
+          msg="Otp Verify Successfully"
+          messages.success(request,msg)
+          return render(request,"delivery_reset_password.html")
+        else:
+          msg = "Invalid Otp"
+          print(msg)
+          messages.error(request,msg)
+          return render(request,"delivery_otp.html")
+    else:
+        return render(request,"delivery_otp.html")    
+
+def delivery_reset(request):
+     print("=========== resetpage page hello===============")
+     if request.POST:
+         print("=========== request page hello===============")
+         try:
+            print("===========hello===============")
+            truckpartner = Truckpartner.objects.get(t_contact = request.session['mobile'])
+            if request.POST['new_password']==request.POST['cnew_password']:
+                print("===========1  hello===============")
+                truckpartner.t_password =request.POST['cnew_password']
+                truckpartner.save()
+                msg="password Reset Successfully"
+                messages.success(request,msg)
+                return  redirect('delivery_login')
+            else:
+                msg="password And Confirm Password Does Not Match"
+                messages.error(request,msg)
+                return redirect('delivery_reset_password')
+         except  Exception as e:
+             print(e)
+     else: 
+         return render(request,'delivery_reset-password.html')
+
+def delivery_change_password(request):
+    try:
+        print("page load")
+        if request.method == 'POST':
+            print("post request")
+            email = request.session['email']
+            if email:
+                truckpartner = Truckpartner.objects.get(t_email=email)
+                if truckpartner.t_password == request.POST['old_password']:
+                    if request.POST['new_password'] == request.POST['cnew_password']:
+                        truckpartner.t_password = request.POST['cnew_password']
+                        truckpartner.save()
+                        messages.success(request, "Password changed successfully. Please login with your new password.")
+                        return redirect('delivery_logout')
+                    else:
+                        msg = "New Password and Confirm New Password do not match..."
+                        messages.error(request, msg)
+                        return redirect('delivery_change_password')
+                else:
+                    msg1 = "Current Password does not match!"
+                    messages.error(request, msg1)
+                    return redirect('delivery_change_password')
+            else:
+                msg1 = "User not logged in!"
+                messages.error(request, msg1)
+                return redirect('delivery_login')
+        else:
+            print("page load, but not a POST request")
+            return render(request, 'delivery_change_password.html')
+    except Exception as e:
+        print(e)
+        print("Exception occurred while changing password")
+        msg1 = "An error occurred while changing password. Please try again later."
+        messages.error(request, msg1)
+        return redirect('delivery_change_password')
 
 def delivery_mywallet(request):
     try:
@@ -255,15 +356,19 @@ def finishride(request):
 def delivery_profile(request):
     truckpartner = Truckpartner.objects.get(t_email = request.session['email'])
     ride = Rides.objects.get(truckpartner = truckpartner)
-    current_datetime = timezone.now()
-    if ride.expiry_time is not None:
-        if current_datetime >= ride.expiry_time:
-                # If last ride was more than 24 hours ago, reset today's earnings to 0
-            ride.today_earning = 0
-            ride.save()
-        print(ride.today_earning)
-        return render(request,'delivery_profile.html',{"truckpartner":truckpartner , 'ride':ride})
-    else:
+    print("555555555555555555555555555555555555555555555555555555555555555555555555555",ride)
+    try:
+        current_datetime = timezone.now()
+        if ride.expiry_time is not None:
+            if current_datetime >= ride.expiry_time:
+                    # If last ride was more than 24 hours ago, reset today's earnings to 0
+                ride.today_earning = 0
+                ride.save()
+            print(ride.today_earning)
+            return render(request,'delivery_profile.html',{"truckpartner":truckpartner , 'ride':ride})
+        else:
+            return render(request,'delivery_profile.html',{"truckpartner":truckpartner , 'ride':ride})
+    except:
         return render(request,'delivery_profile.html',{"truckpartner":truckpartner , 'ride':ride})
   
 def delivery_contact(request):
@@ -335,7 +440,8 @@ def packages(request):
             return render(request,'delivery_payments.html',context)
 
         except Exception as e:
-            print(e)
+            msg="Email is Not Registered"
+            messages.error(request,msg)
             return render(request,"packages.html")
     else:
         return render(request,"packages.html")

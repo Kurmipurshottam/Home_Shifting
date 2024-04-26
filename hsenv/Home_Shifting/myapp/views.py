@@ -201,6 +201,7 @@ def resetpass(request):
 
 def booking(request):
     if 'uemail' in request.session:
+  
         if request.POST:
             userid = User.objects.get(uemail=request.session['uemail'])
             price = int(request.POST.get('price'))
@@ -233,12 +234,13 @@ def booking(request):
             
             print("=======================",context)
             print("&7777777777777777777777",payment)
-
+            
 
         
             return render(request, 'payment.html',context)
         else:
             return render(request, "booking.html")
+
     else:
         messages.info(request, "Please login now.........")
         return render(request, "booking.html")
@@ -246,6 +248,7 @@ def booking(request):
 def mybooking(request):
     user = User.objects.get(uemail = request.session['uemail'])
     user_bookings = Booking.objects.filter(userid=user)
+    print(user_bookings)
     return render(request,"mybooking.html",{'user_bookings': user_bookings})
 
 def payments(request):
@@ -275,7 +278,7 @@ def success(request):
         booking = Booking.objects.filter(userid=user).latest('razorpay_order_id')
 
         razorpay_payment_id = request.GET.get('razorpay_payment_id')
-        if razorpay_payment_id:
+        if razorpay_payment_id!="":
             # Update the booking instance with the Razorpay payment ID
             booking.razorpay_payment_id = razorpay_payment_id
             booking.save()
@@ -287,11 +290,11 @@ def success(request):
             order_id = booking.razorpay_order_id
             mymail(subject, template, to, context,order_id)
             print('======================send otp successfully')
-
-        if razorpay_payment_id:
-            # Update the booking instance with the Razorpay payment ID
-            booking.razorpay_payment_id = razorpay_payment_id
-            booking.save()
+        else:
+            msg = "pyament failed"
+            messages.error(request,msg)
+            booking.delete()
+            return redirect('index')
 
         return render(request, 'success.html')
     else:
