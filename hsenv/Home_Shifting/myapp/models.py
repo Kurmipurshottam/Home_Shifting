@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
@@ -21,6 +22,7 @@ class Booking(models.Model):
     state = models.CharField(max_length=40)
     zipcode = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
+    date = models.DateTimeField(default=timezone.now)
     razorpay_order_id=models.CharField(max_length=100,null=True,blank=True)
     razorpay_payment_id=models.CharField(max_length=100,null=True,blank=True)
     status = models.CharField(max_length=20,choices = ORDERSTATUS,default="Booking")
