@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.db import IntegrityError
 from .models import *
 from django.utils import timezone
 from django.contrib import messages
@@ -17,36 +18,44 @@ def delivery_signup(request):
     if request.POST:
         print(">>>>>>>>>>>page lode")
         try:
-           print("=================Email Alredy exits===================")
-           truckpartner = Truckpartner.objects.get(t_email = request.POST['email'])
-           print(">>>>>>>>>>>>>>>>Email Alredy Exist!!!!")
-           msg = "email Alredy Exist !!!!!"
-           messages.error(request,msg)
-           return redirect('delivery_signup')
-        except:
+            print("=================Email Already exists===================")
+            truckpartner = Truckpartner.objects.get(t_email=request.POST['email'])
+            print(">>>>>>>>>>>>>>>>Email Already Exist!!!!")
+            msg = "Email Already Exist !!!!!"
+            messages.error(request, msg)
+            return redirect('delivery_signup')
+        except Truckpartner.DoesNotExist:
             if request.POST['password'] == request.POST['confirm_password']:
-                truckpartner = Truckpartner.objects.create(
-                    t_name = request.POST['name'],
-                    t_aadharcard_details = request.POST['aadhaar_card'],
-                    t_pancard_details = request.POST['pan_card'],
-                    t_drivinglicence_details = request.POST['driving_licence'],
-                    t_rcnumber = request.POST['rc_number'],
-                    t_contact = request.POST['contact'],
-                    t_email = request.POST['email'],
-                    t_password = request.POST['password'],
-                )
-                print(truckpartner.t_name)
-                msg = "Your Registration Done ...."
-                print("============",msg)
-                messages.success(request, msg)
-                return  render(request,"packages_details.html")
-                # add ragistration than redirect login page
+                try:
+                    truckpartner = Truckpartner.objects.create(
+                        t_name=request.POST['name'],
+                        t_aadharcard_details=request.POST['aadhaar_card'],
+                        t_pancard_details=request.POST['pan_card'],
+                        t_drivinglicence_details=request.POST['driving_licence'],
+                        t_rcnumber=request.POST['rc_number'],
+                        t_contact=request.POST['contact'],
+                        t_email=request.POST['email'],
+                        t_password=request.POST['password'],
+                    )
+                    print(truckpartner.t_name)
+                    msg = "Your Registration Done ...."
+                    print("============", msg)
+                    messages.success(request, msg)
+                    return render(request, "packages_details.html")
+                except IntegrityError as e:
+                    if 'UNIQUE constraint failed' in str(e):
+                        msg = "Pan Card details already exist!"
+                        messages.error(request, msg)
+                    else:
+                        msg = "An error occurred during registration. Please try again."
+                        messages.error(request, msg)
+                    return redirect('delivery_signup')
             else:
-                pmsg="Password and Confim Password Does Not Matched !!!"
+                pmsg = "Password and Confirm Password Do Not Match !!!"
                 messages.error(request, pmsg)
                 return redirect('delivery_signup')
     else:
-        return render(request,'delivery_signup.html')
+        return render(request, 'delivery_signup.html')
 
 def delivery_login(request):
     if request.POST:
